@@ -8,8 +8,7 @@ from dotenv import load_dotenv
 import uuid
 
 load_dotenv(dotenv_path='.env')
-postgres_pass=os.getenv('POSTGRES_PASS')
-DB_URL = f'postgresql+asyncpg://postgres:{postgres_pass}@localhost:5432/chatbot'
+DB_URL = os.getenv('POSTGRES_URL')
 
 class Base(DeclarativeBase):
     pass
