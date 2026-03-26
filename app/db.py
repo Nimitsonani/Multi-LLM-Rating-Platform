@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import uuid
 
 load_dotenv(dotenv_path='.env')
-DB_URL = os.getenv('POSTGRES_URL')
+DB_URL = os.getenv('DATABASE_URL')
 
 class Base(DeclarativeBase):
     pass
