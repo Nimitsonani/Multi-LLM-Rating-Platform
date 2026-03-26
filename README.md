@@ -155,7 +155,7 @@ MISTRAL_API_KEY=your_mistral_api_key
 GEMINI_API_KEY=your_gemini_api_key
 OPEN_ROUTER_API_KEY=your_openrouter_api_key
 LLAMA_API_KEY=your_llama_api_key
-POSTGRES_PASS=your_postgres_password
+DATABASE_URL=your_database_url
 SECRET_KEY=your_secret_key
 ```
 
