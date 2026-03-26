@@ -9,6 +9,12 @@ Instead of just chatting with one model, users can switch between providers, ask
 
 ---
 
+## Live Demo
+
+https://llm-evaluator-fastapi.onrender.com/
+
+---
+
 ## What This Project Is
 
 At its core, this is a multi-model LLM evaluation platform with authentication and persistent storage.
