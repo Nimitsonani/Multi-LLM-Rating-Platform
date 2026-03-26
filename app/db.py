@@ -9,6 +9,9 @@ import uuid
 
 load_dotenv(dotenv_path='.env')
 DB_URL = os.getenv('DATABASE_URL')
+if DB_URL.startswith("postgres://"):
+    DB_URL = DB_URL.replace("postgres://", "postgresql+asyncpg://", 1)
+
 
 class Base(DeclarativeBase):
     pass
