@@ -1,4 +1,4 @@
-# LLM-Evaluator-FastAPI
+# Multi-LLM-Rating-Platform
 
 This project is a FastAPI-based web application that does two things:
 
