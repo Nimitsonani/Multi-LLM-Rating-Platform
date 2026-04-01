@@ -1,36 +1,29 @@
 # Multi-LLM-Rating-Platform
 
-This project is a FastAPI-based web application that does two things:
+A FastAPI-based web application that allows users to compare and rate responses from multiple LLM providers.
 
-1. Acts as an e-commerce support chatbot  
-2. Lets users compare and rate responses from multiple LLM providers  
-
-Instead of just chatting with one model, users can switch between providers, ask the same question to different models, and rate their responses. The app then builds daily and weekly leaderboards based on those ratings.
+Users can ask the same query to different models, evaluate their responses, and contribute to real-time leaderboards based on community ratings.
 
 ---
 
-## Live Demo
+## 🚀 Live Demo
 
 https://llm-evaluator-fastapi.onrender.com/
 
 ---
 
-## What This Project Is
+## ✨ Features
 
-At its core, this is a multi-model LLM evaluation platform with authentication and persistent storage.
-
-Users can:
-
-- Register and log in
-- Chat with different LLM providers
-- Rate each model’s response
-- See which models perform best over time
-
-It combines a support-style chatbot with a simple benchmarking system.
+* Multi-LLM chat interface (Gemini, Mistral, Groq, OpenRouter)
+* User-driven rating system (0–10 scoring)
+* Real-time leaderboards (24h & 7d)
+* Secure authentication (JWT + HTTP-only cookies)
+* Model-specific conversation memory
+* FAQ-grounded chatbot responses
 
 ---
 
-## Screenshots
+## 📸 Screenshots
 
 ### Homepage
 
@@ -46,135 +39,92 @@ It combines a support-style chatbot with a simple benchmarking system.
 
 ---
 
-## How It Works
+## 🧠 How It Works
 
 ### Chat System
 
-- FAQ data is loaded from a CSV file.
-- The FAQ content is injected into the system prompt.
-- The model is instructed to answer strictly within that scope.
-- If the answer is not found in the FAQ context, it returns a fallback response.
-
-Each user has model-specific conversation memory stored in memory.  
-Sessions are cleaned up automatically when tokens expire.
+* FAQ data is loaded from a CSV file and injected into prompts
+* Models respond strictly within provided context
+* Fallback response if answer is not found
+* Session-based conversation memory per model
 
 ---
 
-### Multi-Model Evaluation
+### Rating & Leaderboards
 
-The app supports multiple LLM providers:
+* Users compare responses across models
+* Rate each response from 0–10
+* Ratings stored in PostgreSQL with timestamp
+* Leaderboards generated for:
 
-- Groq  
-- Google Gemini  
-- Mistral  
-- OpenRouter (DeepSeek, OLMo, Nvidia, etc.)
-
-Users can:
-
-- Switch between providers
-- Ask identical questions across models
-- Compare responses
-- Rate each response from 0–10
-
-Each rating is stored in PostgreSQL with:
-
-- User ID  
-- Model name  
-- Score  
-- Timestamp  
+  * Last 24 hours
+  * Last 7 days
 
 ---
 
-### Leaderboards
+### Authentication
 
-The system calculates:
-
-- Top models in the last 24 hours  
-- Top models in the last 7 days  
-
-Average scores are computed per model and sorted automatically.
-
-This allows basic real-time model benchmarking using real user ratings.
+* User registration & login (email/username)
+* Password hashing (bcrypt)
+* JWT-based auth with HTTP-only cookies
+* Protected routes with backend validation
 
 ---
 
-## Authentication System
-
-- User registration (unique username and email)
-- Login using email or username
-- Password hashing with bcrypt
-- JWT tokens (60-minute expiry)
-- Tokens stored in HTTP-only cookies
-- JWT verified on every protected route
-- Logout support
-- Username and password change
-
-Authentication is fully backend-validated — no client-side trust.
-
----
-
-## Tech Stack
+## 🛠 Tech Stack
 
 **Backend**
-- FastAPI (async)
-- PostgreSQL
-- SQLAlchemy (async ORM)
+
+* FastAPI (async)
+* PostgreSQL
+* SQLAlchemy (async ORM)
 
 **Frontend**
-- Jinja2 (server-side rendering)
-- HTML / CSS / JavaScript
+
+* Jinja2
+* HTML / CSS / JavaScript
 
 **Authentication**
-- JWT (HS256)
-- HTTP-only cookies
 
-**External APIs**
-- Groq
-- Gemini
-- Mistral
-- OpenRouter
+* JWT (HS256)
+* HTTP-only cookies
+
+**LLM Providers**
+
+* Groq
+* Google Gemini
+* Mistral
+* OpenRouter
 
 ---
 
-## Running Locally
+## ⚙️ Setup
 
-### Requirements
-
-- Python 3.10+
-- PostgreSQL running locally or remotely
-
-### Setup
-
-1. Install dependencies
-
-```
+```bash
 pip install -r requirements.txt
 ```
 
-2. Create a PostgreSQL database.
+Create `.env`:
 
-3. Create a `.env` file in the root directory:
-
-```
+```env
 GROQ_API_KEY=your_groq_api_key
 MISTRAL_API_KEY=your_mistral_api_key
 GEMINI_API_KEY=your_gemini_api_key
 OPEN_ROUTER_API_KEY=your_openrouter_api_key
-LLAMA_API_KEY=your_llama_api_key
 DATABASE_URL=your_database_url
 SECRET_KEY=your_secret_key
 ```
 
-4. Run the application
+Run:
 
-```
+```bash
 python main.py
 ```
 
 ---
 
-## Notes
+## 📌 Notes
 
-- API keys are stored in environment variables.
-- JWT tokens expire after 60 minutes.
-- Conversation history is stored in memory and cleared when the session expires.
+* Uses user-driven ratings for benchmarking (not automated evaluation)
+* API keys managed via environment variables
+* Sessions expire based on JWT tokens
