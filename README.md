@@ -34,7 +34,7 @@ It combines a support-style chatbot with a simple benchmarking system.
 
 ### Homepage
 
-![Homepage](https://github.com/user-attachments/assets/caddcd0e-36d6-4b22-acaf-788284600163)
+![Homepage](https://github.com/user-attachments/assets/f692cc99-cf2e-4389-9284-10b5d10c05d5)
 
 ### Chat Page
 
